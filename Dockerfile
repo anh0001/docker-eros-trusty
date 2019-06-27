@@ -6,7 +6,7 @@ ENV HOME /home/ubuntu
 
 # RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
 
-# Install ROS Indigo
+# Install ROS Indigo full desktop
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' \
 	&& apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 \
 	&& apt-get update && apt-get install dpkg \
@@ -43,9 +43,9 @@ RUN apt-get install -y --force-yes --no-install-recommends gcc-arm-none-eabi
 RUN apt-get install -y --force-yes --no-install-recommends doxygen
 # Utilities (optional, choose relevant ones):
 RUN apt-get install -y --force-yes --no-install-recommends curl tshark ssh screen \
-	git git-gui gitk qgit \
-	joe vim nano kwrite kdiff3 colordiff kompare \
-	gdb valgrind tree htop
+	gitk qgit \
+	joe kwrite \
+	gdb valgrind tree
 		
 RUN apt-get autoclean \
     && apt-get autoremove \

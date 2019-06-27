@@ -1,17 +1,14 @@
-docker-ubuntu-vnc-desktop
+docker-eros-trusty
 =========================
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/dorowu/ubuntu-desktop-lxde-vnc.svg)](https://hub.docker.com/r/dorowu/ubuntu-desktop-lxde-vnc/)
-[![Docker Stars](https://img.shields.io/docker/stars/dorowu/ubuntu-desktop-lxde-vnc.svg)](https://hub.docker.com/r/dorowu/ubuntu-desktop-lxde-vnc/)
 
 Build yourself
 ```
-git clone https://github.com/fcwu/docker-ubuntu-vnc-desktop.git
-docker build --rm -t anhrisn/eros_trusty:desktop docker-ubuntu-vnc-desktop
+git clone https://github.com/anh0001/docker-eros-trusty.git
+docker build --rm -t anhrisn/eros_trusty:desktop docker-eros-trusty
 ```
 
 Run
-Note: C Shared Drive must be enabled in Docker GUI settings
+Note: C Shared Drive must be enabled in the Docker GUI settings
 ```
 docker run -it --rm -p 6080:80 -v C:\Users\anhar\Documents\codes\humanoid_op_ros:/home/ubuntu/codes anhrisn/eros_trusty:desktop
 ```
@@ -27,13 +24,13 @@ Connect with VNC Viewer and protect by VNC Password
 Forward VNC service port 5900 to host by
 
 ```
-docker run -it --rm -p 6080:80 -p 5900:5900 dorowu/ubuntu-desktop-lxde-vnc
+docker run -it --rm -p 6080:80 -p 5900:5900 anhrisn/eros_trusty:desktop
 ```
 
 Now, open the vnc viewer and connect to port 5900. If you would like to protect vnc service by password, set environment variable `VNC_PASSWORD`, for example
 
 ```
-docker run -it --rm -p 6080:80 -p 5900:5900 -e VNC_PASSWORD=mypassword dorowu/ubuntu-desktop-lxde-vnc
+docker run -it --rm -p 6080:80 -p 5900:5900 -e VNC_PASSWORD=mypassword anhrisn/eros_trusty:desktop
 ```
 
 A prompt will ask password either in the browser or vnc viewer.
