@@ -1,5 +1,8 @@
 docker-eros-trusty
 =========================
+Proxy setting
+
+Open Dockerfile and uncomment the proxy
 
 Build yourself
 ```
@@ -8,6 +11,7 @@ docker build --rm -t anhrisn/eros_trusty:desktop docker-eros-trusty
 ```
 
 Run
+
 Note: C Shared Drive must be enabled in the Docker GUI settings
 ```
 docker run -it --rm -p 6080:80 -v C:\Users\anhar\Documents\codes\humanoid_op_ros:/home/ubuntu/codes anhrisn/eros_trusty:desktop
