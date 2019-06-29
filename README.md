@@ -10,7 +10,7 @@ docker build --rm -t anhrisn/eros_trusty:desktop docker-eros-trusty
 Run
 Note: C Shared Drive must be enabled in the Docker GUI settings
 ```
-docker run -it --rm -p 6080:80 -v C:\Users\anhar\Documents\codes\humanoid_op_ros:/home/ubuntu/codes anhrisn/eros_trusty:desktop
+docker run -it --rm -p 6080:80 -v C:\Users\anhar\Documents\codes\humanoid_op_ros:/home/ubuntu/codes/humanoid_op_ros anhrisn/eros_trusty:desktop
 ```
 
 Browse http://127.0.0.1:6080/

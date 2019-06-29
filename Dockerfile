@@ -8,8 +8,6 @@ ENV HOME /home/ubuntu
 # ENV http_proxy=http://10.252.11.50:3128
 # ENV https_proxy=https://10.252.11.50:3128
 
-# RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
-
 # Install ROS Indigo full desktop
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' \
 	&& apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 \
@@ -88,8 +86,24 @@ RUN chmod +x /bin/tini
 ADD image /
 RUN pip install setuptools wheel && pip install --ignore-installed -r /usr/lib/web/requirements.txt
 
+# Setup robot
+RUN echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc \
+	&& echo "source /home/ubuntu/codes/humanoid_op_ros/src/nimbro/scripts/env.sh" >> ~/.bashrc \
+	&& echo "export NIMBRO_ROBOT_TYPE=P1" >> ~/.bashrc \
+	&& echo "export NIMBRO_ROBOT_NAME=xs0" >> ~/.bashrc \
+	&& echo "export NIMBRO_ROBOT_VARIANT=nimbro_op_hull" >> ~/.bashrc
+RUN echo "*    hard rtprio 0" >> /etc/security/limits.d/nimbro.conf \
+	&& echo "*    soft rtprio 0" >> /etc/security/limits.d/nimbro.conf \
+	&& echo "root hard rtprio 20" >> /etc/security/limits.d/nimbro.conf \
+	&& echo "root soft rtprio 20" >> /etc/security/limits.d/nimbro.conf
+RUN mkdir -p /nimbro \
+	&& chown root /nimbro
+RUN mkdir -p /var/log/nimbro \
+	&& chmod 777 /var/log/nimbro
+
 EXPOSE 80
-WORKDIR /home/ubuntu
+WORKDIR /root
+ENV SHELL=/bin/bash
 ENTRYPOINT ["/startup.sh"]
 
 # ENV http_proxy=""
