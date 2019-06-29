@@ -4,6 +4,10 @@ FROM ubuntu:14.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /home/ubuntu
 
+# Set environment proxy
+# ENV http_proxy=http://10.252.11.50:3128
+# ENV https_proxy=https://10.252.11.50:3128
+
 # RUN sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list
 
 # Install ROS Indigo full desktop
@@ -87,3 +91,6 @@ RUN pip install setuptools wheel && pip install --ignore-installed -r /usr/lib/w
 EXPOSE 80
 WORKDIR /home/ubuntu
 ENTRYPOINT ["/startup.sh"]
+
+# ENV http_proxy=""
+# ENV https_proxy=""
