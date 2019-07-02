@@ -86,12 +86,15 @@ RUN chmod +x /bin/tini
 ADD image /
 RUN pip install setuptools wheel && pip install --ignore-installed -r /usr/lib/web/requirements.txt
 
-# Setup robot
+# *** Setup robot environment ***
 RUN echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc \
 	&& echo "source /home/ubuntu/codes/humanoid_op_ros/src/nimbro/scripts/env.sh" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_TYPE=P1" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_NAME=xs0" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_VARIANT=nimbro_op_hull" >> ~/.bashrc
+# Fix error roscore unable to contact my own server
+RUN echo "export ROS_HOSTNAME=localhost" >> ~/.bashrc \
+	&& echo "export ROS_MASTER_URI=http://localhost:11311" >> ~/.bashrc
 RUN echo "*    hard rtprio 0" >> /etc/security/limits.d/nimbro.conf \
 	&& echo "*    soft rtprio 0" >> /etc/security/limits.d/nimbro.conf \
 	&& echo "root hard rtprio 20" >> /etc/security/limits.d/nimbro.conf \
