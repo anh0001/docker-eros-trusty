@@ -47,13 +47,17 @@ RUN apt-get install -y --force-yes --no-install-recommends doxygen
 # Utilities (optional, choose relevant ones):
 RUN apt-get install -y --force-yes --no-install-recommends curl tshark ssh screen \
 	gitk qgit \
-	joe kwrite \
+	joe kwrite nano\
 	gdb valgrind tree
-# install emacs
+# Install emacs
 RUN add-apt-repository ppa:kelleyk/emacs \
     && apt-get update \
     && apt-get install -y --force-yes --no-install-recommends emacs  
-		
+# Install additional packages that we found errors
+RUN apt-get update \
+    && apt-get install -y --force-yes --no-install-recommends libsuitesparse-metis-dev \
+    libcholmod2.1.2 ros-indigo-libg2o libqtwebkit-dev
+
 RUN apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -107,6 +111,9 @@ RUN mkdir -p /nimbro \
 	&& chown root /nimbro
 RUN mkdir -p /var/log/nimbro \
 	&& chmod 777 /var/log/nimbro
+	
+# Fix gazebo 2.2 error unable to find namespaces
+RUN echo "export GAZEBO_MODEL_DATABASE_URI=http://models.gazebosim.org" >> /usr/share/gazebo-2.2/setup.sh
 
 EXPOSE 80
 WORKDIR /root

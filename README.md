@@ -8,7 +8,10 @@ docker build --rm -t anhrisn/eros_trusty:desktop docker-eros-trusty
 ```
 
 Run
-Note: C Shared Drive must be enabled in the Docker GUI settings
+
+Note: C Shared Drive must be enabled in the Docker GUI settings.
+
+remove -it option for running Emacs.
 ```
 docker run -it --rm -p 6080:80 -v C:\Users\anhar\Documents\codes\humanoid_op_ros:/home/ubuntu/codes/humanoid_op_ros anhrisn/eros_trusty:desktop
 ```
@@ -40,7 +43,9 @@ Troubleshooting
 ==================
 
 1. boot2docker connection issue, https://github.com/fcwu/docker-ubuntu-vnc-desktop/issues/2
-
+2. Error "iso c++ forbids declaration of static_assert with no type" while compiling.
+   add_definitions(-std=c++11) in the respective CMakeLists.txt.
+   We add the definition in the head_control, rc_utils, limb_control, cap_gait, bench_vis, and walk_and_kick packages.
 
 License
 ==================
