@@ -49,6 +49,10 @@ RUN apt-get install -y --force-yes --no-install-recommends curl tshark ssh scree
 	gitk qgit \
 	joe kwrite \
 	gdb valgrind tree
+# install emacs
+RUN add-apt-repository ppa:kelleyk/emacs \
+    && apt-get update \
+    && apt-get install -y --force-yes --no-install-recommends emacs  
 		
 RUN apt-get autoclean \
     && apt-get autoremove \
