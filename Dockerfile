@@ -32,10 +32,10 @@ RUN apt-get install -y --force-yes --no-install-recommends software-properties-c
 # Python dependencies
 RUN apt-get install -y --force-yes --no-install-recommends sshpass \
 	python-pip python-dev build-essential \
-	&& sudo pip install --upgrade pip \
-	&& sudo pip install --upgrade virtualenv \
-	&& sudo pip install --upgrade --no-deps --force-reinstall pexpect \
-	&& sudo pip install termcolor
+	&& pip install --upgrade pip \
+	&& pip install --upgrade virtualenv \
+	&& pip install --upgrade --no-deps --force-reinstall pexpect \
+	&& pip install termcolor
 # ncurses library
 RUN apt-get install -y --force-yes --no-install-recommends libncurses5-dev
 # x264 Library:
