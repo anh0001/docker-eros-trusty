@@ -96,7 +96,7 @@ RUN pip install setuptools wheel && pip install --ignore-installed -r /usr/lib/w
 
 # *** Setup robot environment ***
 RUN echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc \
-	&& echo "source /home/ubuntu/codes/humanoid_op_ros/src/nimbro/scripts/env.sh" >> ~/.bashrc \
+	&& echo "source /home/ubuntu/codes/EROS/src/nimbro/scripts/env.sh" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_TYPE=P1" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_NAME=xs0" >> ~/.bashrc \
 	&& echo "export NIMBRO_ROBOT_VARIANT=nimbro_op_hull" >> ~/.bashrc
