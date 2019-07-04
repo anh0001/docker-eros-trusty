@@ -88,7 +88,7 @@ RUN apt-get update \
 
 # tini for subreap                                   
 ENV TINI_VERSION v0.9.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
+RUN curl -SL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini > /bin/tini
 RUN chmod +x /bin/tini
 
 ADD image /
@@ -115,9 +115,11 @@ RUN mkdir -p /var/log/nimbro \
 # Fix gazebo 2.2 error unable to find namespaces
 RUN echo "export GAZEBO_MODEL_DATABASE_URI=http://models.gazebosim.org" >> /usr/share/gazebo-2.2/setup.sh
 
-EXPOSE 80
-WORKDIR /root
 ENV SHELL=/bin/bash
+EXPOSE 80
+WORKDIR /
+RUN chmod +x startup.sh
+RUN chmod +x /usr/lib/noVNC/utils/launch.sh
 ENTRYPOINT ["/startup.sh"]
 
 # ENV http_proxy=""

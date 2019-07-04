@@ -13,7 +13,7 @@ Note: C Shared Drive must be enabled in the Docker GUI settings.
 
 Remove -it option for non-interactive mode, for example in Emacs.
 ```
-git clone -b 2019-trusty-0.01 https://github.com/anh0001/EROS.git C:\Users\xxx\Documents\codes\EROS
+git clone -b 2019-trusty-0.01 https://github.com/anh0001/EROS.git
 docker run -it --rm -p 6080:80 -v C:\Users\xxx\Documents\codes\EROS:/home/ubuntu/codes/EROS anhrisn/eros_trusty:desktop
 ```
 
