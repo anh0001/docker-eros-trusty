@@ -5,8 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /home/ubuntu
 
 # Set environment proxy
-# ENV http_proxy=http://10.252.11.50:3128
-# ENV https_proxy=https://10.252.11.50:3128
+#ENV http_proxy=http://10.252.11.50:3128
+#ENV https_proxy=https://10.252.11.50:3128
 
 # Install ROS Indigo full desktop
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' \
