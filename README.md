@@ -47,6 +47,7 @@ Troubleshooting
 2. Error "iso c++ forbids declaration of static_assert with no type" while compiling.
    add_definitions(-std=c++11) in the respective CMakeLists.txt.
    We add the definition in the head_control, rc_utils, limb_control, cap_gait, bench_vis, and walk_and_kick packages.
+3. In windows, use git from linux subsystem. But do not commit as it causes the files change its mode.
 
 License
 ==================
